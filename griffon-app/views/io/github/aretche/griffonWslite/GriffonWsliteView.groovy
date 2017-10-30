@@ -6,6 +6,7 @@ import griffon.metadata.ArtifactProviderFor
 import javafx.scene.Scene
 import javafx.scene.control.Tab
 import javafx.scene.control.TabPane
+import javafx.scene.layout.HBox
 import javafx.scene.paint.Color
 import javafx.stage.Stage
 import org.kordamp.ikonli.fontawesome.FontAwesome
@@ -37,15 +38,24 @@ class GriffonWsliteView {
         stage.scene = init()
 
         // Creo un tab usando GroovyFX
-        Tab tab1 = new Tab(text: application.messageSource.getMessage('wsLite.tabGroovyFX.label'))
+        Tab tab1 = new Tab(text: application.messageSource.getMessage('wsLite.tabAFIP.label'))
         builder.with {
             content = anchorPane {
-                button(leftAnchor: 420, topAnchor: 5, prefWidth: 200,
-                        text: application.messageSource.getMessage('wsLite.refeshButton.label'))
-                textArea(leftAnchor: 20, topAnchor: 40, prefHeight: 360, prefWidth: 600)
+                vbox(leftAnchor: 20, prefWidth: 600){
+                    hbox{
+                        toolBar(hgrow: 'always') {
+                            label(text: application.messageSource.getMessage('wsLite.cuit.label'))
+                            textField(prefWidth: 150, text: bind(model.cuitBuscarProperty()))
+                            button(text: application.messageSource.getMessage('wsLite.searchButton.label'),
+                                    buscarAction)
+                        }
+                    }
+                    textArea(prefHeight: 360, prefWidth: 600,
+                            text: bind(model.inscripcionProperty()))
+                }
             }
         }
-        tab1.graphic = new FontIcon(FontAwesome.GEARS)
+        tab1.graphic = new FontIcon(FontAwesome.TWITTER)
         tab1.content = builder.content
         tab1.closable = false
         tabPane.tabs.add(tab1)
