@@ -74,6 +74,9 @@ dependencies {
     compile "org.kordamp.ikonli:ikonli-javafx:1.8.0"
     compile "org.kordamp.ikonli:ikonli-fontawesome-pack:1.8.0"
 
+    // Librería wslite
+    compile 'com.github.groovy-wslite:groovy-wslite:1.1.3'
+
     testCompile "org.codehaus.griffon:griffon-javafx-test:${griffon.version}"
     testCompile "org.codehaus.groovy:groovy-all:${groovyVersion}"
     testCompile "org.spockframework:spock-core:${spockVersion}"
